@@ -17,6 +17,7 @@ class pesapalV30Helper {
    * Live API = www.pesapal.com
    * Demo API = demo.pesapal.com
    */
+
   public function getAccessToken($consumer_key, $consumer_secret){
     $headers = array();
     $headers['accept'] = 'text/plain';

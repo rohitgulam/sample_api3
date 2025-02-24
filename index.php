@@ -1,4 +1,4 @@
-<?php include('top.php'); ?>
+<!-- <?php include('top.php'); ?> -->
 <script>
 				function referenceShuffle(val){
 					if (document.getElementById('ref').checked){
@@ -10,7 +10,7 @@
 			</script>
 <br />
 <div class="row-fluid">
-	<div class="span7">
+	<!-- <div class="span7">
 
                         <ol type="1">
                         	<li>Read our online documentation. Follow it step by step. <a target="_blank" href="https://developer.pesapal.com/">Read Now</a> </li>
@@ -36,10 +36,39 @@
         
         
         
-    </div>
+    </div> -->
     <div class="span5">
         <form id="rightcol" action="iframe.php" method="post" class="rounded5">
-            <table>
+            <h2>Your Details</h2>
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" value="" />
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" value="" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="text" name="email" value="" />
+            </div>
+
+            <div class="form-group">
+                <label for="phone_number">Phone Number</label>
+                <input type="text" name="phone_number" value="" />
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="text" name="amount" value="" />
+            </div>
+
+            <input type="submit" value="Make Payment" class="btn" />
+
+            
+            <!-- <table>
                 <tr>
                     <td>First Name:</td>
                     <td><input type="text" name="first_name" value="" /></td>
@@ -86,9 +115,9 @@
                 <tr>
                     <td colspan="2"><input type="submit" value="Make Payment" class="btn" /></td>
                 </tr>
-            </table>
+            </table> -->
         </form>
     </div>
 </div>
 
-<?php include('bottom.php'); ?>
+<!-- <?php include('bottom.php'); ?> -->
