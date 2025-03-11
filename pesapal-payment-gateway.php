@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: PesaPal Payment Gateway
-Plugin URI: https://yourwebsite.com/pesapal-plugin
+Plugin URI: https://rohitgulam.com/
 Description: A payment gateway integration for PesaPal
 Version: 1.0.0
-Author: Your Name
-Author URI: https://yourwebsite.com
+Author: Rohit Gulam
+Author URI: https://rohitgulam.com
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: pesapal-payment
@@ -80,26 +80,33 @@ class Pesapal_Plugin {
     }
 
     public static function activate() {
-        // Create necessary database tables
         global $wpdb;
         
         $charset_collate = $wpdb->get_charset_collate();
+        $table_name = $wpdb->prefix . 'pesapal_payments';
         
-        $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}pesapal_transactions (
+        $sql = "CREATE TABLE IF NOT EXISTS $table_name (
             id bigint(20) NOT NULL AUTO_INCREMENT,
-            order_id varchar(100) NOT NULL,
+            first_name varchar(100) NOT NULL,
+            last_name varchar(100) NOT NULL,
+            email varchar(100) NOT NULL,
+            phone_number varchar(50) NOT NULL,
             amount decimal(10,2) NOT NULL,
             currency varchar(10) NOT NULL,
-            status varchar(50) NOT NULL,
-            payment_method varchar(50),
+            transaction_id varchar(100) NOT NULL,
+            payment_status varchar(50) NOT NULL,
             created_at datetime DEFAULT CURRENT_TIMESTAMP,
             updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            PRIMARY KEY  (id),
-            KEY order_id (order_id)
+            PRIMARY KEY  (id)
         ) $charset_collate;";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
+
+        // Log any database errors
+        if (!empty($wpdb->last_error)) {
+            error_log('PesaPal Plugin DB Creation Error: ' . $wpdb->last_error);
+        }
     }
 
     public static function deactivate() {

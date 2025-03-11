@@ -7,11 +7,9 @@ class Pesapal_Helper {
 
     public function __construct() {
         $this->api_mode = 'demo';
-        $this->consumer_key = "ngW+UEcnDhltUc5fxPfrCD987xMh3Lx8";
-        $this->consumer_secret = "q27RChYs5UkypdcNYKzuUw460Dg=";
-        $this->url = ($this->api_mode == 'live') 
-            ? "https://pay.pesapal.com/v3" 
-            : "https://cybqa.pesapal.com/pesapalv3";
+        $this->consumer_key = "sG1M3r0BDwYU0IDH7S+XRTqVwCHb2AUB";
+        $this->consumer_secret = "lUpGcr+0fwrGsb6rxPpGMgW7tjg=";
+        $this->url = "https://pay.pesapal.com/v3";
     }
 
     public function process_payment($payment_data) {

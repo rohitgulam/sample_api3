@@ -120,6 +120,21 @@
     background: #790606;
 }
 
+.amount-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-symbol {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+#modal-amount {
+    flex: 1;
+}
+
 .amount-display {
     margin: 15px 0;
     padding: 10px;

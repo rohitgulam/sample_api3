@@ -3,6 +3,7 @@ class Pesapal_Admin {
     public function __construct() {
         add_action('admin_menu', array($this, 'add_settings_page'));
         add_action('admin_init', array($this, 'register_settings'));
+        add_action('admin_menu', array($this, 'add_menu_pages'));
     }
 
     public function add_settings_page() {
@@ -167,6 +168,32 @@ class Pesapal_Admin {
             });
         });
         </script>
+        <?php
+    }
+
+    public function add_menu_pages() {
+        add_menu_page(
+            'PesaPal Payments',
+            'PesaPal Payments',
+            'manage_options',
+            'pesapal-payments',
+            array($this, 'render_payments_page'),
+            'dashicons-money',
+            30
+        );
+    }
+
+    public function render_payments_page() {
+        require_once plugin_dir_path(__FILE__) . 'class-pesapal-payments-list.php';
+        $payments_table = new Pesapal_Payments_List();
+        $payments_table->prepare_items();
+        ?>
+        <div class="wrap">
+            <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+            <form method="post">
+                <?php $payments_table->display(); ?>
+            </form>
+        </div>
         <?php
     }
 } 

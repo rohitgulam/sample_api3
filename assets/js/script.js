@@ -7,10 +7,23 @@ jQuery(document).ready(function($) {
     $('.pesapal-buy-button').on('click', function() {
         var amount = $(this).data('amount');
         var currency = $(this).data('currency');
+        var amountSpecified = $(this).data('amount-specified');
         
-        $('#modal-amount').val(amount);
         $('#modal-currency').val(currency);
-        $('#display-amount').text(currency + ' ' + amount);
+        $('.currency-symbol').text(currency);
+        
+        if (amountSpecified === 'true') {
+            // Fixed amount
+            $('#modal-amount').val(amount);
+            $('#amount-field').hide();
+            $('#amount-display').show();
+            $('#display-amount').text(currency + ' ' + parseFloat(amount).toFixed(2));
+        } else {
+            // User can enter amount
+            $('#modal-amount').val('');
+            $('#amount-field').show();
+            $('#amount-display').hide();
+        }
         
         modal.show();
     });
@@ -27,10 +40,25 @@ jQuery(document).ready(function($) {
         }
     });
 
+    // Update amount display when user enters amount
+    $('#modal-amount').on('input', function() {
+        var amount = $(this).val();
+        var currency = $('#modal-currency').val();
+        if (amount && amount > 0) {
+            $('#display-amount').text(currency + ' ' + parseFloat(amount).toFixed(2));
+        }
+    });
+
     // Form submission
     $('#pesapal-payment-form').on('submit', function(e) {
         e.preventDefault();
         
+        var amount = $('#modal-amount').val();
+        if (!amount || parseFloat(amount) <= 0) {
+            alert('Please enter a valid amount');
+            return;
+        }
+
         var form = $(this);
         var submitButton = form.find('input[type="submit"]');
         var formData = new FormData(this);

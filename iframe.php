@@ -7,8 +7,8 @@ require_once('helper/pesapalV30Helper.php');
 // temporary key starage... you can store this on db
 // KenyanTest Consumer/secret keys.. you can replace this with your own set for live testing
 // TEST CREDENTIAL LINK: https://developer.pesapal.com/api3-demo-keys.txt
-$consumer_key = "ngW+UEcnDhltUc5fxPfrCD987xMh3Lx8";
-$consumer_secret = "q27RChYs5UkypdcNYKzuUw460Dg=";
+$consumer_key = "sG1M3r0BDwYU0IDH7S+XRTqVwCHb2AUB";
+$consumer_secret = "lUpGcr+0fwrGsb6rxPpGMgW7tjg=";
 
 $api = 'live';
 if(isset($_POST['keys'])){
@@ -17,6 +17,7 @@ if(isset($_POST['keys'])){
     $api = 'live';  
 }
 
+$api = 'live';  
 // echo $api;
 
 // Pesapal helper class
